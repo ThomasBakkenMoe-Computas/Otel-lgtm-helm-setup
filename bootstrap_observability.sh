@@ -87,5 +87,11 @@ spec:
           exporters: [loki, logging]
 EOF
 
+# Install grafana
 helm repo add grafana https://grafana.github.io/helm-charts
-helm upgrade lgtm-distributed grafana/lgtm-distributed --namespace observability --create-namespace
+helm repo update
+helm upgrade --install grafana grafana/grafana --namespace observability --create-namespace -f grafanaValues.yaml
+
+
+
+# helm upgrade lgtm-distributed grafana/lgtm-distributed --namespace observability --create-namespace
