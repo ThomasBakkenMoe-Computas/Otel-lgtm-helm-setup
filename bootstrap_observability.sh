@@ -3,8 +3,13 @@
 # Exit on any error
 set -e
 
-# Install Cert-Manager
+# Add required Helm repos
 helm repo add jetstack https://charts.jetstack.io --force-update
+helm repo add open-telemetry https://open-telemetry.github.io/opentelemetry-helm-charts
+helm repo add grafana https://grafana.github.io/helm-charts
+helm repo update
+
+# Install Cert-Manager
 helm upgrade \
   --install cert-manager jetstack/cert-manager \
   --namespace cert-manager \
@@ -13,8 +18,6 @@ helm upgrade \
   --set crds.enabled=true
 
 # Install OpenTelemetry Operator
-helm repo add open-telemetry https://open-telemetry.github.io/opentelemetry-helm-charts
-helm repo update
 helm upgrade --install otel-operator open-telemetry/opentelemetry-operator --namespace otel --create-namespace \
     --set "manager.collectorImage.repository=otel/opentelemetry-collector-k8s" \
     --set admissionWebhooks.certManager.enabled=true \
@@ -88,9 +91,10 @@ spec:
 EOF
 
 # Install grafana
-helm repo add grafana https://grafana.github.io/helm-charts
-helm repo update
 helm upgrade --install grafana grafana/grafana --namespace observability --create-namespace -f grafanaValues.yaml
+
+
+# Install Loki
 
 
 
