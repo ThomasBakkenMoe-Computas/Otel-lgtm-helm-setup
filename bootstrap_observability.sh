@@ -96,7 +96,7 @@ helm upgrade --install grafana grafana/grafana --namespace observability --creat
 
 
 # Install Loki
-
+helm upgrade --install loki grafana/loki --namespace observability --create-namespace -f lokiValues.yaml
 
 
 # helm upgrade lgtm-distributed grafana/lgtm-distributed --namespace observability --create-namespace
