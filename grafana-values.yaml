@@ -1,0 +1,22 @@
+adminUser: admin
+adminPassword: admin
+ingress:
+  enabled: false
+service:
+  type: NodePort
+datasources:
+  datasources.yaml:
+    apiVersion: 1
+    datasources:
+      - name: Loki
+        type: loki
+        access: proxy
+        url: http://loki-loki-distributed-querier.monitoring.svc.cluster.local:3100
+        jsonData:
+          maxLines: 1000
+      - name: Tempo
+        type: tempo
+        access: proxy
+        url: http://tempo-query-frontend.monitoring.svc.cluster.local:3100
+        jsonData:
+          httpMethod: POST

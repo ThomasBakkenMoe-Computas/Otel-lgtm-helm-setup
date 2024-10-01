@@ -1,0 +1,40 @@
+query_frontend:
+  replicaCount: 1
+  resources:
+    requests:
+      memory: 512Mi
+      cpu: 500m
+
+querier:
+  replicaCount: 1
+  resources:
+    requests:
+      memory: 512Mi
+      cpu: 500m
+
+distributor:
+  replicaCount: 1
+  resources:
+    requests:
+      memory: 512Mi
+      cpu: 500m
+
+ingester:
+  replicaCount: 1
+  resources:
+    requests:
+      memory: 512Mi
+      cpu: 500m
+
+compactor:
+  replicaCount: 1
+  resources:
+    requests:
+      memory: 512Mi
+      cpu: 500m
+
+backend:
+  cassandra: false
+  local:
+    path: /var/tempo/traces
+    size: 10Gi
