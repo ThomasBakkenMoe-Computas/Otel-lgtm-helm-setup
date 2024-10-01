@@ -1,0 +1,8 @@
+ingester:
+  extraVolumes:
+    - name: tsdb
+      emptyDir: {}
+  extraVolumeMounts:
+    - name: tsdb
+      mountPath: /data/tsdb
+

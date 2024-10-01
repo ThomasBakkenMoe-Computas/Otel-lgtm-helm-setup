@@ -101,5 +101,8 @@ helm upgrade --install loki grafana/loki-distributed --namespace monitoring --cr
 # Install Tempo
 helm upgrade --install tempo grafana/tempo-distributed --namespace monitoring --create-namespace -f tempo-values.yaml
 
+# Install Mimir
+helm upgrade --install mimir grafana/mimir-distributed --namespace monitoring --create-namespace -f mimir-values.yaml
+
 
 # helm upgrade lgtm-distributed grafana/lgtm-distributed --namespace observability --create-namespace
