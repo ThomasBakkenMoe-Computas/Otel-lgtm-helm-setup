@@ -92,11 +92,14 @@ spec:
 EOF
 
 # Install grafana
-helm upgrade --install grafana grafana/grafana --namespace observability --create-namespace -f grafanaValues.yaml
+helm upgrade --install grafana grafana/grafana --namespace monitoring --create-namespace -f grafana-values.yaml
 
 
 # Install Loki
-helm upgrade --install loki grafana/loki --namespace observability --create-namespace -f lokiValues.yaml
+helm upgrade --install loki grafana/loki-distributed --namespace monitoring --create-namespace -f loki-values.yaml
+
+# Install Tempo
+helm upgrade --install tempo grafana/tempo-distributed --namespace monitoring --create-namespace -f tempo-values.yaml
 
 
 # helm upgrade lgtm-distributed grafana/lgtm-distributed --namespace observability --create-namespace
